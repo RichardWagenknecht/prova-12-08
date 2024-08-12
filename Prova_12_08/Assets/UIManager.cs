@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    private void Awake()
+    public void Awake()
     {
         Instance = this;
     }
@@ -25,9 +25,8 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < botoes.Length; i++)
         {
             int x = i;
-            botoes[i].onClick = GameManager.instance.Checarcor(x); 
+            botoes[i].onClick.AddListener(() => GameManager.Instance.ChecarCor(x)); 
         }
-
     }
 
 
