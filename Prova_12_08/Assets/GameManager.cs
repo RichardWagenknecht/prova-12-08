@@ -32,13 +32,13 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < sequencia.Length; i++)
         {
-            sequencia[i] = Random.Range(0, nomes.Length);
+            sequencia = new int [Random.Range(0, nomes.Length)];
             UIManager.instance.AtualizarSequencia(nomes[sequencia[i]]);
         }
     }
     private void ChecarCor(int corIndex)
     {
-        if (corIndex == corDaVez)
+        if (corIndex == sequencia[corDaVez])
         {
             corDaVez++;
 
