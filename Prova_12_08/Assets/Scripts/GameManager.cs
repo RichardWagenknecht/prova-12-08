@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private void Awake()
+    public void Awake()
     {
         Instance = this;
     }
@@ -18,25 +18,25 @@ public class GameManager : MonoBehaviour
     int[] sequencia;
 
     [SerializeField] string[] nomes;
-    private void Start()
+    public void Start()
     {
         GerarSequencia();
     }
-    private void GerarSequencia()
+    public void GerarSequencia()
     {
         corDaVez = 0;
 
         sequencia = new int [Random.Range(3, nomes.Length)];
 
-        UIManager.instance.LimparTextos;
+        UIManager.Instance.LimparTexto();
 
         for (int i = 0; i < sequencia.Length; i++)
         {
-            sequencia = new int [Random.Range(0, nomes.Length)];
-            UIManager.instance.AtualizarSequencia(nomes[sequencia[i]]);
+            sequencia[i] = Random.Range(0, nomes.Length);
+            UIManager.Instance.AtualizarSequencia(nomes[sequencia[i]]);
         }
     }
-    private void ChecarCor(int corIndex)
+    public void ChecarCor(int corIndex)
     {
         if (corIndex == sequencia[corDaVez])
         {
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             {
                 acertos++;
 
-                UIManager.instance.AtualizarAcertos();
+                UIManager.Instance.AtualizarAcertos(acertos);
 
                 GerarSequencia ();
             }
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         {
             erros ++;
 
-            UIManager.instance.AtualizarErros();
+            UIManager.Instance.AtualizarErros(erros);
             GerarSequencia();
         }
     }
